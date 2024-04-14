@@ -26,8 +26,6 @@
 ################################################################################
 # Imports
 import streamlit as st
-from dataclasses import dataclass
-from typing import Any, List
 from web3 import Web3
 
 w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
@@ -77,9 +75,6 @@ w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
 # * `get_balance`
 # * `send_transaction`
 
-# @TODO:
-# From `crypto_wallet.py import the functions generate_account, get_balance,
-#  and send_transaction
 from crypto_wallet import generate_account, get_balance, send_transaction
 
 ################################################################################
@@ -161,8 +156,8 @@ account = generate_account()
 ##########################################
 
 # Write the client's Ethereum account address to the sidebar
+st.sidebar.write('My account address')
 st.sidebar.write(account.address)
-st.sidebar.write(account.key)
 
 ##########################################
 # Step 1 - Part 5:
@@ -174,6 +169,7 @@ st.sidebar.write(account.key)
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
 balance = get_balance(w3, account.address)
+st.sidebar.write('My account balance')
 st.sidebar.write(balance)
 
 ##########################################
